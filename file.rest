@@ -1,0 +1,18 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZSI6eyJfaWQiOiI2MjYxMzE3MDVhZjc4ZjAwNDRiNTgyNWMiLCJuYW1lIjoic291OWlubyIsInN1YmRvbWFpbiI6InNvdTlpbm8uc3RvcmVpbm8ud29ybGQifSwidXNlciI6eyJfaWQiOiI2MjYxMzE3MDVhZjc4ZjAwNDRiNTgyNTciLCJmaXJzdG5hbWUiOiJhYmRlbGFsaSIsImxhc3RuYW1lIjoicmFmaWsiLCJlbWFpbCI6ImFiZGVsYWxpLnJhZmlrMDFAZ21haWwuY29tIn0sImNvbXBhbnkiOnsic3RhdHVzIjoiVU5DT01QTEVURUQiLCJfaWQiOiI2MjYxMzE3MDVhZjc4ZjAwNDRiNTgyNTUiLCJuYW1lIjoic291OWlubyJ9LCJpYXQiOjE2NTA5MDUzMjMsImV4cCI6MTY1MTc2OTMyM30.blo1KEoLM8dxWVjjMCP9WwUeGYFMigZ8-Zo5RyR8ybg
+
+###
+GET https://admin.storeino.world/stores/api/themes/search
+X-Auth-Token: {{token}}
+
+###
+GET https://admin.storeino.world/stores/api/themes/update?team._id=5f21374a175b5e8e309be827
+Content-Type: application/json
+X-Auth-Token: {{token}}
+
+{
+  "team": {
+    "name": "DEVELOPMENT",
+    "url": "https://market.storeino.com/storeino/",
+    "_id": "5f21374a175b5e8e309be827"
+  }
+}

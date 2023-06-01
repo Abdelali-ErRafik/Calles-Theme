@@ -1,0 +1,10 @@
+
+            <!-- Right Image Slide  -->
+                        <!-- <div v-if="banner.right.active" class="w-full hidden md:block md:w-4/4 bg-gray-300">
+                    <div class="w-full">
+                        <router-link :to="banner.right.url">
+                            <si-image class=" object-cover h-full" width="100%" height="500" :src="banner.right.image ? banner.right.image.src: $store.state.defaults.sideBanner" alt="Banner image"/>
+                        </router-link>
+                    </div>
+                </div> -->
+            <!--  -->

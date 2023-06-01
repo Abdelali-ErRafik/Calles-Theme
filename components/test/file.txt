@@ -1,0 +1,232 @@
+    <div class="row test">
+
+      <div class="s1">
+        <component :is="component" :item="items[3]" class="w-full h-full"></component>
+      </div>
+
+      <div class="s2">
+        <!--  -->
+        <div class="row">
+          <div class="c1">
+            <component :is="component" :item="items[1]"></component>
+          </div>
+          <div class="c1">
+            <component :is="component" :item="items[2]"></component>
+          </div>
+        </div>
+        <!--  -->
+      </div>
+
+      <div class="s3">
+          <div class="h-full">
+            <component :is="component" :item="items[0]" class="test w-full h-full"></component>
+          </div>
+      </div>
+    </div>
+
+
+
+.row {
+    display: flex;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.s1 {
+    flex: 0 0 49%;
+    max-width: 49%;
+    /* padding-left: 5px;
+    padding-right: 5px;
+    margin-bottom: 10px;*/
+}
+
+.s2 {
+  flex: 0 0 25%;
+  max-width: 25%;
+}
+
+.c1 {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+.s3 {
+    flex: 0 0 24%;
+    max-width: 24%;
+    /* padding-left: 5px;
+    padding-right: 5px;
+    margin-bottom: 10px; */
+}
+
+
+/////////////////////////////
+<template>
+<div>
+    <div class="m-2 mt-10">
+        <h2 class="title flex justify-center items-center">
+          <span>{{ instagram.title }}</span>
+        </h2>
+        <h4 class="text-center italic">{{instagram.description }}</h4>
+    </div>
+
+    <div class="flex flex-wrap flex-row justify-between py-4">
+      <div class="services flex" v-for="(item, i) in items" :key="i">
+        <div class="my-4">
+                <si-image width="80" height="80" class="w-16 p-2 h- object-cover opacity-70" :src="item.image ? item.image.src : null" alt="item image"   />
+        </div>
+      </div>
+    </div>
+
+    <div class="relative h-screen">
+    <div class="relative w-full h-full">
+      <img v-bind:src="currentImage" v-bind:alt="altText" class="absolute w-full h-full object-cover object-center" />
+      <div class="absolute inset-0 flex items-center justify-center">
+        <button @click="previousImage" class="bg-white p-2 rounded-full hover:bg-gray-200">
+          <svg class="fill-current text-gray-800 h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+          </svg>
+        </button>
+        <button @click="nextImage" class="bg-white p-2 rounded-full hover:bg-gray-200 ml-2">
+          <svg class="fill-current text-gray-800 h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+</template>
+<script>
+export default {
+    data() {
+        return {
+            instagram: this.$settings.sections.instagram,
+            items: [
+                {
+                    image: { src: this.$settings.sections.instagram.items.item_0.image.src },
+                },
+                // {
+                //     image: { src: this.$settings.sections.instagram.items.item_0.image },
+                // },
+                // {
+                //     image: { src: this.$settings.sections.instagram.items.item_0.image },
+                // },
+                // {
+                //     image: { src: this.$settings.sections.instagram.items.item_0.image },
+                // },
+                // {
+                //     image: { src: this.$settings.sections.instagram.items.item_0.image },
+                // },
+                // {
+                //     image: { src: this.$settings.sections.instagram.items.item_0.image },
+                // }
+            ],
+            images: [
+                'https://cdn-icons-png.flaticon.com/512/950/950299.png',
+                'https://cdn-icons-png.flaticon.com/512/1534/1534216.png',
+                'https://cdn-icons-png.flaticon.com/512/950/950299.png'
+            ],
+        currentImageIndex: 0,
+        altText: 'Slider image'
+        }
+    },  computed: {
+    currentImage() {
+      return this.images[this.currentImageIndex]
+    }
+  },
+  methods: {
+    previousImage() {
+      if (this.currentImageIndex === 0) {
+        this.currentImageIndex = this.images.length - 1
+      } else {
+        this.currentImageIndex--
+      }
+    },
+    nextImage() {
+      if (this.currentImageIndex === this.images.length - 1) {
+        this.currentImageIndex = 0
+      } else {
+        this.currentImageIndex++
+      }
+    }
+  }
+}
+</script>
+
+<style scoped>
+.title {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.sub_title {
+  font-size: 1.2rem;
+  font-weight: 400;
+  font-family: Libre Baskerville;
+}
+
+.title:before,
+.title:after {
+    content: "";
+    display: inline-block;
+    width: 60px;
+    height: 2px;
+    background: #222;
+    font-weight: 600;
+}
+.title>span {
+    margin: 0 30px;
+}
+
+.btn_link:hover {
+  border-color: #56cfe1;
+  background-color: #56cfe1;
+  color: #fff;
+}
+
+.btn_link:hover>span {
+  color: #fff;
+}
+
+@media screen and (max-width: 600px) {
+  .title {
+    font-size: 1.1rem;
+  }
+
+  .sub_title {
+  font-size: 0.9rem;
+}
+}
+.services {
+    width: 25%;
+}
+
+@media screen and (max-width: 1025px){
+    .services {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 767px){
+    .services {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .services a {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .services img {
+        width: 5rem;
+        height: 5rem;
+    }
+    
+
+}
+</style>
